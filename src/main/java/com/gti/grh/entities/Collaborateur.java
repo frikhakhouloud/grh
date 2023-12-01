@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Collaborateur {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	private long id;
+	private Long id;
 	private Integer cin;
 	private String nom;
 	private Integer numCompte;
@@ -30,4 +31,21 @@ public class Collaborateur {
 	private String certification;
 	private Integer anneeExperience;
 
+	@ManyToOne
+	private ContratType contratType;
+	
+	@ManyToOne
+	private NiveauEtude niveauEtude;
+	
+	@ManyToOne
+	private Poste poste;
+	
+	@ManyToOne
+	private Responsable responsable;
+	
+	@ManyToOne
+	private Departement departement;
+	
+	@ManyToOne
+	private AvantageSalaire avantageSalaire;
 }

@@ -1,26 +1,28 @@
 package com.gti.grh.entities;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
-public class Poste {
+public class PieceJointe {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	private String poste;
+	private String nomPieceJointe;
 	
-	@OneToMany(mappedBy = "poste")
-	private Collection<Collaborateur> collaborateurs;
+	
+	@ManyToOne
+	private ContratType contratType;
+
+	
 }
