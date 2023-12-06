@@ -20,7 +20,10 @@ import com.gti.grh.entities.Collaborateur;
 import com.gti.grh.service.CollaborateurService;
 
 @CrossOrigin(origins = "http://localhost:4200/")
-@RestController
+
+/*
+ * @CrossOrigin("*")
+ */@RestController
 @RequestMapping(value="/Collaborateurs")
 public class CollaborateurController {
 	
