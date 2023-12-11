@@ -12,25 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gti.grh.dao.PosteRepository;
 import com.gti.grh.entities.Poste;
+
 @CrossOrigin("*")
 @RestController
-@RequestMapping(value="/Poste")
+@RequestMapping(value = "/Poste")
 
 public class PosteController {
 	@Autowired
 	private PosteRepository posteRepository;
-	
+
 	@PostMapping("/add")
-	public Poste ajouterPoste(@RequestBody Poste p)
-	{
+	public Poste ajouterPoste(@RequestBody Poste p) {
 		return posteRepository.save(p);
 	}
+
 	@GetMapping("/GetAll")
-	public List<Poste> getAllPoste()
-	{
+	public List<Poste> getAllPoste() {
 		return posteRepository.findAll();
 	}
-	
-	
 
 }

@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gti.grh.dao.ResponsableRepository;
 import com.gti.grh.entities.Responsable;
+
 @CrossOrigin("*")
 @RestController
-@RequestMapping(value="/Responsable")
+@RequestMapping(value = "/Responsable")
 public class ResponsaleController {
-@Autowired
-private ResponsableRepository responsableRepository;
+	@Autowired
+	private ResponsableRepository responsableRepository;
 
-@PostMapping("/add")
-public Responsable ajouterResponsable(@RequestBody Responsable r)
-{
-	return responsableRepository.save(r);
-}
-@GetMapping("/GetAll")
-public List<Responsable> getAllResponsable()
-{
-	return responsableRepository.findAll();
-}
+	@PostMapping("/add")
+	public Responsable ajouterResponsable(@RequestBody Responsable r) {
+		return responsableRepository.save(r);
+	}
+
+	@GetMapping("/GetAll")
+	public List<Responsable> getAllResponsable() {
+		return responsableRepository.findAll();
+	}
 }

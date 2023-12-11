@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gti.grh.entities.Departement;
 
-public interface DepartementRepository extends JpaRepository<Departement, Long>{
+public interface DepartementRepository extends JpaRepository<Departement, Long> {
 
 }

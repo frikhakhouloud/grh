@@ -12,25 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gti.grh.dao.AvantageSalaireRepository;
 import com.gti.grh.entities.AvantageSalaire;
+
 @CrossOrigin("*")
 @RestController
-@RequestMapping(value="/AvantageSalaire")
+@RequestMapping(value = "/AvantageSalaire")
+
 public class AvantageSalaireController {
-@Autowired
-private AvantageSalaireRepository avantageSalaireRepository;
+	@Autowired
+	private AvantageSalaireRepository avantageSalaireRepository;
 
-@PostMapping("/add")
-public AvantageSalaire ajouterAvantge(@RequestBody AvantageSalaire a)
-{
-	return avantageSalaireRepository.save(a);
-}
+	@PostMapping("/add")
+	public AvantageSalaire ajouterAvantge(@RequestBody AvantageSalaire a) {
+		return avantageSalaireRepository.save(a);
+	}
 
-
-@GetMapping("/GetAll")
-public List<AvantageSalaire> getAllAvantage()
-{
-	return avantageSalaireRepository.findAll();
-}
-
+	@GetMapping("/GetAll")
+	public List<AvantageSalaire> getAllAvantage() {
+		return avantageSalaireRepository.findAll();
+	}
 
 }

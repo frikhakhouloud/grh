@@ -1,7 +1,7 @@
 package com.gti.grh.controller;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,30 +19,24 @@ import com.gti.grh.dao.CollaborateurRepository;
 import com.gti.grh.entities.Collaborateur;
 import com.gti.grh.service.CollaborateurService;
 
-@CrossOrigin(origins = "http://localhost:4200/")
 
-/*
- * @CrossOrigin("*")
- */@RestController
-@RequestMapping(value="/Collaborateurs")
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping(value = "/Collaborateurs")
 public class CollaborateurController {
-	
+
 	@Autowired
 	protected CollaborateurRepository collaborateurRepository;
-	
+
 	@Autowired
 	CollaborateurService collaborateurService;
-	
-	
-	
+
 	@PostMapping("/add")
 	@ResponseBody
-	public Collaborateur ajouterCollaborateur(@RequestBody Collaborateur c)
-	{
+	public Collaborateur ajouterCollaborateur(@RequestBody Collaborateur c) {
 		return collaborateurService.saveCollaborateur(c);
 	}
-	
-	
+
 	/*
 	 * @PostMapping("/addDto") public CollaborateurDto ajouterCollaborateur
 	 * (@RequestBody CollaborateurDto c) { Collaborateur co = new Collaborateur();
@@ -54,51 +48,34 @@ public class CollaborateurController {
 	 * 
 	 * }
 	 */
-	
+
 	@GetMapping("/GetAll")
 	@ResponseBody
-	public List<Collaborateur> getAllCollaborateur()
-	{	
+	public List<Collaborateur> getAllCollaborateur() {
 		return collaborateurService.getAllCollaborateur();
 	}
-	
-	
-	@GetMapping("GetId/{id}") 
-    public Collaborateur getIdCollaborateur(@PathVariable("id") Long id)
-    {
+
+	@GetMapping("GetId/{id}")
+	public Collaborateur getIdCollaborateur(@PathVariable("id") Long id) {
 		return collaborateurService.getCollaborateur(id);
-    }
-	
-	
+	}
+
 	@PutMapping("/Update")
-    public Collaborateur modifierCollaborateur(@RequestBody Collaborateur c)
-    {
+	public Collaborateur modifierCollaborateur(@RequestBody Collaborateur c) {
 		return collaborateurService.updateCollaborateur(c);
-    }
-	
-	
+	}
+
 	@DeleteMapping("Delete/{id}")
 	@ResponseBody
-	 public void deleteCollaborateur(@PathVariable("id") Long id)
-	 {
+	public void deleteCollaborateur(@PathVariable("id") Long id) {
 		collaborateurService.deleteCollaborateurById(id);
-	 }
-	
-	
-	 @GetMapping("GetName/{nom}")
-	 @ResponseBody
-	  public Collaborateur getNameCollaborateur(@PathVariable("nom") String nom)
-	  { 
-		 return collaborateurService.getNameCollaborateur(nom);
-	  } 
-	 
-	 @PutMapping("/affectercollabcontrat/{id}/{id}")
-	 @ResponseBody
-	 public void AffecterCollabContrat(@PathVariable("id") Long idcollab,@PathVariable("id") Long idcontrat) {
-		 
-		 collaborateurService.AffecterCollabContrat(idcollab, idcontrat);
-		 
-	 }
-	 
-	 
+	}
+
+	@GetMapping("GetName/{nom}")
+	@ResponseBody
+	public Collaborateur getNameCollaborateur(@PathVariable("nom") String nom) {
+		return collaborateurService.getNameCollaborateur(nom);
+	}
+
+
 }

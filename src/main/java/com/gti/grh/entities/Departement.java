@@ -1,5 +1,6 @@
 package com.gti.grh.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -16,12 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Departement {
+public class Departement implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
 	private String nomDepartament;
 
-	@OneToMany(mappedBy = "departement")
-	private Collection<Collaborateur> collaborateurs;
+//	@OneToMany(mappedBy = "departement")
+//	private Collection<Collaborateur> collaborateurs;
 }

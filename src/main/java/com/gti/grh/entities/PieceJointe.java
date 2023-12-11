@@ -1,10 +1,11 @@
 package com.gti.grh.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,15 +15,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class PieceJointe {
+public class PieceJointe implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
 	private String nomPieceJointe;
-	
-	
-	@ManyToOne
-	private ContratType contratType;
+	/*
+	 * @ManyToOne private ContratType contratType;
+	 */
 
-	
 }

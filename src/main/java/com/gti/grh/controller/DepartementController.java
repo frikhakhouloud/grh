@@ -12,20 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gti.grh.dao.DepartementRepository;
 import com.gti.grh.entities.Departement;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/Departement")
 public class DepartementController {
 	@Autowired
 	private DepartementRepository departementRepository;
-	
+
 	@PostMapping("/add")
-	public Departement ajouterDepartement(@RequestBody Departement d){	
+	public Departement ajouterDepartement(@RequestBody Departement d) {
 		return departementRepository.save(d);
 	}
+
 	@GetMapping("/GetAll")
-	public List<Departement> getAllDepartement()
-	{
+	public List<Departement> getAllDepartement() {
 		return departementRepository.findAll();
 	}
 }

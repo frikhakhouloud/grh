@@ -1,21 +1,24 @@
 package com.gti.grh.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-public class Collaborateur {
+public class Collaborateur implements Serializable  {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
@@ -24,28 +27,66 @@ public class Collaborateur {
 	private Integer numCompte;
 	private Integer numSecSocial;
 	private Integer telephone;
-	private Date dateNaissance;
+	private String dateNaissance;
 	private String email;
 	private String adresse;
 	private String natureEtude;
 	private String certification;
 	private Integer anneeExperience;
+	
+	
+	private long idTypeContrat; 
+	
+	private long idNiveauEtude;
+	
+	private long idPoste;
+	
+	private long idResponsable;
 
-	@ManyToOne
+	private long idDepartement;
+	
+	private long idAvantageSalaire;
+
+
+	
+	@Transient
 	private ContratType contratType;
 	
-	@ManyToOne
+	@Transient
 	private NiveauEtude niveauEtude;
 	
-	@ManyToOne
+	@Transient
 	private Poste poste;
 	
-	@ManyToOne
+	@Transient
 	private Responsable responsable;
 	
-	@ManyToOne
+	@Transient
 	private Departement departement;
 	
-	@ManyToOne
+	@Transient
 	private AvantageSalaire avantageSalaire;
+
+	
+	
+//	@RestResource(exported = false)
+//	@ManyToOne
+//	private ContratType contratType;
+//
+//	@ManyToOne
+//	private NiveauEtude niveauEtude;
+//
+//	@ManyToOne
+//	private Poste poste;
+//
+//	@ManyToOne
+//	private Responsable responsable;
+//
+//	@ManyToOne
+//	private Departement departement;
+//
+//	@ManyToOne
+//	private AvantageSalaire avantageSalaire;
+
+
 }
