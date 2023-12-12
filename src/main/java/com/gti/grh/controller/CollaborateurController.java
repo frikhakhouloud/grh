@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gti.grh.dao.CollaborateurRepository;
+import com.gti.grh.dto.GetDto;
 import com.gti.grh.entities.Collaborateur;
 import com.gti.grh.service.CollaborateurService;
 
@@ -77,5 +78,8 @@ public class CollaborateurController {
 		return collaborateurService.getNameCollaborateur(nom);
 	}
 
-
+	@GetMapping("/GetAllDto")
+	public List<GetDto> getAllCollaborateurDto() {
+		return collaborateurService.getAllCollaborateurDto();
+	}
 }

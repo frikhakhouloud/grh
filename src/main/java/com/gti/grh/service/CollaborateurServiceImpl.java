@@ -1,6 +1,6 @@
 package com.gti.grh.service;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,10 @@ import com.gti.grh.dao.DepartementRepository;
 import com.gti.grh.dao.NiveauEtudeRepository;
 import com.gti.grh.dao.PosteRepository;
 import com.gti.grh.dao.ResponsableRepository;
-import com.gti.grh.entities.AvantageSalaire;
+import com.gti.grh.dto.GetDto;
 import com.gti.grh.entities.Collaborateur;
 import com.gti.grh.entities.ContratType;
+import com.gti.grh.entities.Poste;
 
 @Service
 public class CollaborateurServiceImpl implements CollaborateurService {
@@ -96,6 +97,31 @@ public class CollaborateurServiceImpl implements CollaborateurService {
 		collaborateur.setContratType(contrattype);
 		collaborateurRepository.save(collaborateur);
 
+	}
+
+	@Override
+	public List<GetDto> getAllCollaborateurDto() {
+		List<GetDto>getDtos= new ArrayList<>();
+		
+				
+		List<Collaborateur> collaborateurs = collaborateurRepository.findAll();
+		collaborateurs.stream().forEach(c->{
+			ContratType contrattype = contratTypeRepository.findById(c.getIdTypeContrat()).get();
+			Poste poste = posteRepository.findById(c.getIdPoste()).orElse(null);
+//			Poste poste = posteRepository.findById(c.getIdPoste()).get();
+
+			GetDto dto = new GetDto();
+			
+			dto.setId(c.getId());
+			dto.setNom(c.getNom());
+			dto.setType(contrattype.getType());
+			dto.setPoste(poste.getPoste());
+			dto.setAnneeExperience(c.getAnneeExperience());
+			getDtos.add(dto);
+			
+			
+		});
+		return getDtos;
 	}
 
 }
