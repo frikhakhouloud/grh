@@ -1,7 +1,12 @@
 package com.gti.grh.service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +19,11 @@ import com.gti.grh.dao.NiveauEtudeRepository;
 import com.gti.grh.dao.PosteRepository;
 import com.gti.grh.dao.ResponsableRepository;
 import com.gti.grh.dto.GetDto;
+import com.gti.grh.entities.AvantageSalaire;
 import com.gti.grh.entities.Collaborateur;
 import com.gti.grh.entities.ContratType;
 import com.gti.grh.entities.Poste;
+
 
 @Service
 public class CollaborateurServiceImpl implements CollaborateurService {
@@ -42,9 +49,19 @@ public class CollaborateurServiceImpl implements CollaborateurService {
 	@Autowired
 	AvantageSalaireRepository avantageSalaireRepository;
 	
+	
 	@Override
 	public Collaborateur saveCollaborateur(Collaborateur c) {
 
+//	AvantageSalaire avantageSalaire=	avantageSalaireRepository.save(c.getAvantageSalaire());
+//	
+//	
+//	c.setIdAvantageSalaire(avantageSalaire.getId());
+		
+		
+		
+		
+		
 		return collaborateurRepository.save(c);
 	}
 
@@ -108,7 +125,6 @@ public class CollaborateurServiceImpl implements CollaborateurService {
 		collaborateurs.stream().forEach(c->{
 			ContratType contrattype = contratTypeRepository.findById(c.getIdTypeContrat()).get();
 			Poste poste = posteRepository.findById(c.getIdPoste()).orElse(null);
-//			Poste poste = posteRepository.findById(c.getIdPoste()).get();
 
 			GetDto dto = new GetDto();
 			
@@ -123,5 +139,47 @@ public class CollaborateurServiceImpl implements CollaborateurService {
 		});
 		return getDtos;
 	}
+	private int calculateAge(Date dateOfBirth) {
+		LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate currentDate = LocalDate.now();
+		return Period.between(birthDate, currentDate).getYears();
+		
+	}
+	@Override
+	public Integer getPiramideAge() {
+		List<Collaborateur> collaborateurs = collaborateurRepository.findAll();
+		int n = collaborateurs.size();
+		int sumOfAges = collaborateurs.stream().mapToInt(collab -> calculateAge(collab.getDateNaissance())).sum();
 
+		return sumOfAges / n;
+	}
+
+	@Override
+	public Float getSalairesMoyenne() {
+		List<Collaborateur> collaborateurs = collaborateurRepository.findAll();
+		int n = collaborateurs.size();
+		AtomicReference<Float> sumOfSalaire = new AtomicReference<>(0.0f);
+
+		collaborateurs.forEach(c -> {
+			AvantageSalaire  salaire = avantageSalaireRepository.findById(c.getIdAvantageSalaire()).get();
+			if (salaire != null) {
+				sumOfSalaire.updateAndGet(currentSum -> currentSum + salaire.getSalaire());
+			}
+		});
+
+		return n > 0 ? sumOfSalaire.get() / n : 0.0f; // Calculate average if there are collaborators, else return 0
+	}
+
+
+	 @Override
+	    public Float getMasseSalariale() {
+			List<AvantageSalaire> listeAvantagesSalaires = avantageSalaireRepository.findAll(); 
+	        float sommeSalaires = 0;
+	        for (AvantageSalaire avantageSalaire : listeAvantagesSalaires) {
+	        	sommeSalaires += avantageSalaire.getSalaire();
+	        }
+	        return sommeSalaires;
+	    }
+	 
+	 
 }

@@ -19,6 +19,15 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 public class Collaborateur implements Serializable  {
+
+	public Collaborateur(Object id2, int cin2, String nom2, int numCompte2, int numSecSocial2, int telephone2,
+			String string, String email2, String adresse2, String natureEtude2, String certification2,
+			int anneeExperience2, int idTypeContrat2, int idNiveauEtude2, int idPoste2, int idResponsable2,
+			int idDepartement2, int idAvantageSalaire2, ContratType contrat1, NiveauEtude niveau3, Poste poste1,
+			Responsable responsable1, Departement departement1, AvantageSalaire avantage2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
@@ -27,7 +36,7 @@ public class Collaborateur implements Serializable  {
 	private Integer numCompte;
 	private Integer numSecSocial;
 	private Integer telephone;
-	private String dateNaissance;
+	private Date dateNaissance;
 	private String email;
 	private String adresse;
 	private String natureEtude;

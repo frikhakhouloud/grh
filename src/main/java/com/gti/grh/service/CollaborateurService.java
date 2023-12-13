@@ -22,15 +22,14 @@ public interface CollaborateurService {
 
 	Collaborateur getNameCollaborateur(String nom);
 
-	 void AffecterCollabContrat(Long idcollab, Long idtypecontrat);
+	void AffecterCollabContrat(Long idcollab, Long idtypecontrat);
+
+	List<GetDto> getAllCollaborateurDto();
 	
-		List<GetDto> getAllCollaborateurDto();
+	Integer getPiramideAge();
+
+	Float getSalairesMoyenne();
+
+	Float getMasseSalariale();
 
 }
-
-//@GetMapping("GetName/{nom}")
-//public Collaborateur getNameCollaborateur(@PathVariable("nom") String nom)
-//{ 
-//	  return collaborateurRepository.findByName(nom);
-//} 
-//}

@@ -38,17 +38,7 @@ public class CollaborateurController {
 		return collaborateurService.saveCollaborateur(c);
 	}
 
-	/*
-	 * @PostMapping("/addDto") public CollaborateurDto ajouterCollaborateur
-	 * (@RequestBody CollaborateurDto c) { Collaborateur co = new Collaborateur();
-	 * //co.setAdresse(c.getAdresse()); co.setCin(c.getCin());
-	 * co.setDateNaissance(c.getDateNaissance()); //co.setEmail(c.getEmail());
-	 * co.setNom(c.getNom()); co.setNumCompte(c.getNumCompte());
-	 * co.setNumSecSocial(c.getNumSecSocial()); co.setTelephone(c.getTelephone());
-	 * co.setId(c.getId()); co = collaborateurRepository.save(co); return c;
-	 * 
-	 * }
-	 */
+
 
 	@GetMapping("/GetAll")
 	@ResponseBody
@@ -82,4 +72,19 @@ public class CollaborateurController {
 	public List<GetDto> getAllCollaborateurDto() {
 		return collaborateurService.getAllCollaborateurDto();
 	}
+	@GetMapping("/piramideAge")
+	public Integer getPiramideAge() {
+		return collaborateurService.getPiramideAge();
+	}
+	@GetMapping("/salairesMoyenne")
+	public Float getSalairesMoyenne() {
+		return collaborateurService.getSalairesMoyenne();
+	}
+	
+	@GetMapping("/masseSalariale")
+	public Float getMasseSalariale() {
+		return collaborateurService.getMasseSalariale();
+	}
+	
+	
 }

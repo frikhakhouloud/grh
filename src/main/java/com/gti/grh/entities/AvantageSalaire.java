@@ -1,13 +1,11 @@
 package com.gti.grh.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +20,7 @@ public class AvantageSalaire implements Serializable {
 	@Id
 	private Long id;
 	private String avantage;
+	private float salaire;
 
 //	@OneToMany(mappedBy = "avantageSalaire")
 //	private Collection<Collaborateur> collaborateurs;
