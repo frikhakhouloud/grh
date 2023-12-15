@@ -14,7 +14,9 @@ public interface CollaborateurService {
 
 	Collaborateur saveCollaborateur(Collaborateur c);
 
-	Collaborateur updateCollaborateur(Collaborateur c);
+	Collaborateur updateCollaborateur(Collaborateur c, Long id);
+//	CollaborateurDto updateCollaborateur(AjoutCollaborateurDto ajoutCollaborateurDto,Integer id);
+
 
 	void deleteCollaborateur(Collaborateur c);
 

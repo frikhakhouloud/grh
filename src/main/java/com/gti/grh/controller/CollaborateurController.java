@@ -57,11 +57,16 @@ public class CollaborateurController {
 		return collaborateurService.getCollaborateur(id);
 	}
 
-	@PutMapping("/Update")
-	public Collaborateur modifierCollaborateur(@RequestBody Collaborateur c) {
-		return collaborateurService.updateCollaborateur(c);
+	@PutMapping("/Update/{id}")
+	public Collaborateur modifierCollaborateur(@RequestBody Collaborateur c,@PathVariable Long id) {
+		return collaborateurService.updateCollaborateur(c, id);
 	}
 
+	
+//	@PutMapping("/update/{id}")
+//	public CollaborateurDto updateCollaborateur(@RequestBody AjoutCollaborateurDto ajoutCollaborateurDto,@PathVariable Integer id) {
+//		return collaborateurService.updateCollaborateur(ajoutCollaborateurDto, id);
+//	}
 	@DeleteMapping("Delete/{id}")
 	@ResponseBody
 	public void deleteCollaborateur(@PathVariable("id") Long id) {

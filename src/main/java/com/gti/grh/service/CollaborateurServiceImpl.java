@@ -84,7 +84,9 @@ public class CollaborateurServiceImpl implements CollaborateurService {
 	}
 
 	@Override
-	public Collaborateur updateCollaborateur(Collaborateur c) {
+	public Collaborateur updateCollaborateur(Collaborateur c, Long id) {
+		Collaborateur collab = collaborateurRepository.findById(id).get();
+		c.setId(collab.getId());
 		return collaborateurRepository.save(c);
 	}
 
