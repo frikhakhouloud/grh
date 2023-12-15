@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Grh" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="736ee619-839a-4f9b-b641-dfa644276ba6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<parameter name="idCollaborateur" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT c."NOM",
+	c."ID",
+	c."TELEPHONE",
+	c."ANNEE_EXPERIENCE",
+	t."TYPE",
+	a."SALAIRE"
+FROM "COLLABORATEUR" c,
+	"CONTRAT_TYPE" t,
+	"AVANTAGE_SALAIRE" a
+WHERE 
+	 $P{idCollaborateur} = c."ID" 
+	 AND c."ID_TYPE_CONTRAT" = t."ID"
+	 and c.id_avantage_salaire =a.id]]>
+	</queryString>
+	<field name="NOM" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NOM"/>
+		<property name="com.jaspersoft.studio.field.label" value="NOM"/>
+	</field>
+	<field name="ID" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+	</field>
+	<field name="TELEPHONE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TELEPHONE"/>
+		<property name="com.jaspersoft.studio.field.label" value="TELEPHONE"/>
+	</field>
+	<field name="ANNEE_EXPERIENCE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="ANNEE_EXPERIENCE"/>
+		<property name="com.jaspersoft.studio.field.label" value="ANNEE_EXPERIENCE"/>
+	</field>
+	<field name="TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TYPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="TYPE"/>
+	</field>
+	<field name="SALAIRE" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="SALAIRE"/>
+		<property name="com.jaspersoft.studio.field.label" value="SALAIRE"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="30" width="310" height="30" uuid="f93c54dd-8c51-4ea0-93f9-9672d177737f"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Collaborateur Details :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="249" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="10" width="100" height="30" uuid="b51acbac-f95e-4213-b4a5-db6833554577"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="10" width="100" height="30" uuid="dbf36793-ab48-4300-a0cb-c407f11471fc"/>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="50" width="100" height="30" uuid="eba0683a-ccf6-4dff-a718-57f5a5c24f13"/>
+				<textFieldExpression><![CDATA[$F{NOM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="50" width="100" height="30" uuid="dfb9ea89-6673-48a1-bb9f-46877d7686dc"/>
+				<text><![CDATA[Nom Complet]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="120" width="100" height="30" uuid="3f9f874a-e1e2-4eb9-aab7-96ecf3bc6f1e"/>
+				<textFieldExpression><![CDATA[$F{ANNEE_EXPERIENCE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="90" width="100" height="30" uuid="53c45524-ede6-498a-bf43-f53e7cb520ad"/>
+				<text><![CDATA[telephone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="120" width="100" height="30" uuid="cad86a86-3f0f-4784-8727-02a777aba884"/>
+				<text><![CDATA[Année d'experience]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="100" width="100" height="30" uuid="161324d4-6abe-414f-8f3d-565e38a6f673"/>
+				<textFieldExpression><![CDATA[$F{TELEPHONE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="200" width="100" height="30" uuid="7772ebd6-e26a-4f19-b96c-21a96bb5d8dc"/>
+				<text><![CDATA[Salaire]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="200" width="100" height="30" uuid="4e1aecbf-ad77-48bf-9572-4e06e61d54fe"/>
+				<textFieldExpression><![CDATA[$F{SALAIRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="160" width="100" height="30" uuid="64ec8bd9-2acd-40b6-8ba2-e271881ea2ec"/>
+				<text><![CDATA[Contrat]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="160" width="100" height="30" uuid="65864ffd-ef1e-4389-9787-0a55626ac283"/>
+				<textFieldExpression><![CDATA[$F{TYPE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

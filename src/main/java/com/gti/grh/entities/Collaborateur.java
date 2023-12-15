@@ -20,6 +20,11 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Collaborateur implements Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Collaborateur(Object id2, int cin2, String nom2, int numCompte2, int numSecSocial2, int telephone2,
 			String string, String email2, String adresse2, String natureEtude2, String certification2,
 			int anneeExperience2, int idTypeContrat2, int idNiveauEtude2, int idPoste2, int idResponsable2,

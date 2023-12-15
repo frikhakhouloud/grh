@@ -1,10 +1,14 @@
 package com.gti.grh.service;
 
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.gti.grh.dto.GetDto;
 
 import com.gti.grh.entities.Collaborateur;
+
+import net.sf.jasperreports.engine.JRException;
 
 public interface CollaborateurService {
 
@@ -31,5 +35,7 @@ public interface CollaborateurService {
 	Float getSalairesMoyenne();
 
 	Float getMasseSalariale();
+
+	void downloadJasper(Long idCollaborateur) throws FileNotFoundException, SQLException, JRException;
 
 }

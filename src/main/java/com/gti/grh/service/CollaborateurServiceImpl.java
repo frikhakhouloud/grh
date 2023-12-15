@@ -1,12 +1,20 @@
 package com.gti.grh.service;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +31,13 @@ import com.gti.grh.entities.AvantageSalaire;
 import com.gti.grh.entities.Collaborateur;
 import com.gti.grh.entities.ContratType;
 import com.gti.grh.entities.Poste;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 
 @Service
@@ -49,6 +64,9 @@ public class CollaborateurServiceImpl implements CollaborateurService {
 	@Autowired
 	AvantageSalaireRepository avantageSalaireRepository;
 	
+	@Autowired
+	private DataSource dataSource;
+
 	
 	@Override
 	public Collaborateur saveCollaborateur(Collaborateur c) {
@@ -180,6 +198,16 @@ public class CollaborateurServiceImpl implements CollaborateurService {
 	        }
 	        return sommeSalaires;
 	    }
-	 
+	 @Override
+	 public void downloadJasper(Long idCollaborateur) throws FileNotFoundException, SQLException, JRException {
+	 Connection con = dataSource.getConnection();
+	 final InputStream stream = this.getClass().getResourceAsStream("/Grh.jrxml");
+	 final JasperReport report = JasperCompileManager.compileReport(stream);
+	 Map<String, Object> parameters = new HashMap<>();
+	 parameters.put("idCollaborateur", idCollaborateur);
+	 final JasperPrint print = JasperFillManager.fillReport(report, parameters, con);
+	 String path = "C:\\Users\\FRIKHA.Khouloud\\JaspersoftWorkspace\\MyReports";
+	 JasperExportManager.exportReportToPdfFile(print, path +"-"+ collaborateurRepository.findById(idCollaborateur).get().getNom()+".pdf");
+	 }
 	 
 }
