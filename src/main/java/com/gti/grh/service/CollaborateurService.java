@@ -33,6 +33,8 @@ public interface CollaborateurService {
 	List<GetDto> getAllCollaborateurDto();
 	
 	Integer getPiramideAge();
+	
+	
 
 	Float getSalairesMoyenne();
 
